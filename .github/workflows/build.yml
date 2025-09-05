@@ -2,13 +2,9 @@ name: Build
 
 on:
   push:
-    branches: [ master ]
-  workflow_dispatch:
-    inputs:
-      reason:
-        description: "Optional note for manual run"
-        required: false
-        type: string
+    branches: [master]
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
 
 permissions:
   id-token: write
@@ -18,7 +14,27 @@ env:
   AWS_ROLE: ${{ secrets.awsIAMS3UploadRole }}
 
 jobs:
+  pre-flight:
+    runs-on: ubuntu-latest
+    outputs:
+      should_publish_beta: ${{ steps.check.outputs.beta }}
+      should_publish_prod: ${{ steps.check.outputs.prod }}
+
+    steps:
+      - name: Check conditions
+        id: check
+        run: |
+          # Evaluate the logic directly and assign to shell variables
+          beta_condition=${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && contains(toJson(github.event.pull_request.labels), 'publish-beta') }}
+          prod_condition=${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+
+          # Set the outputs for other jobs to use
+          echo "beta=$beta_condition" >> $GITHUB_OUTPUT
+          echo "prod=$prod_condition" >> $GITHUB_OUTPUT
+
   build-and-deploy:
+    needs: pre-flight
+    if: needs.pre-flight.outputs.should_publish_beta == 'true' || needs.pre-flight.outputs.should_publish_prod == 'true'
     runs-on: ubuntu-latest
 
     steps:
@@ -27,7 +43,12 @@ jobs:
 
       - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e
         with:
-          node-version: '22'
+          node-version: "22"
+
+      - name: Inject beta version (internal PRs labeled publish-beta)
+        if: needs.pre-flight.outputs.should_publish_beta == 'true'
+        # Pass monotonically increasing GitHub run number to ensure unique beta artifacts.
+        run: node tools/beta-version.js ${{ github.run_number }}
 
       - name: Install dependencies
         run: yarn

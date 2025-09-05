@@ -4,10 +4,7 @@ EXTENSION_NAME="auth0-account-link"
 
 # Check if the current version is a beta version. If so, we'll
 # deploy to extensions/develop, rather than `extensions`.
-IS_BETA=$(echo "$CURRENT_VERSION" | grep -c "beta")
-
-# Determine base path depending on beta flag.
-if [ "$IS_BETA" -eq 1 ]; then
+if echo "$CURRENT_VERSION" | grep -q "beta"; then
   EXTENSIONS_PATH="extensions/develop"
   echo "Beta version detected ($CURRENT_VERSION). Using 'develop' CDN path."
 else

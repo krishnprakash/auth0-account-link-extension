@@ -51,25 +51,28 @@ yarn test
 
 ## Release Process
 
-Deployment is now handled by the GitHub Actions workflow (`.github/workflows/build.yml`). It runs automatically on:
+Deployment is handled by the GitHub Actions workflow (`.github/workflows/build.yml`). It runs automatically on:
 
-1. Push/merge to `master` (stable releases)
-2. Manual trigger ("Run workflow" in the GitHub UI) against any branch (useful for beta / pre‑release testing)
+1. Push/merge to `master` (stable release → prod CDN path `/extensions`)
+2. Any pull request activity (open/update/reopen/labeled) that has the `publish-beta` label (beta pre-release → beta CDN path `/extensions/develop`)
 
-### 1. Bump the Version
-Update the version in BOTH `package.json` and `webtask.json`.
+### 1. Versioning
+Stable releases: manually bump the semantic version in BOTH `package.json` and `webtask.json` on a branch that will merge to `master` (e.g. set to `3.5.0`).
 
-Use semantic versions. Append `-beta.N` for beta builds, e.g. `3.5.0-beta.1`.
+Beta releases: DO NOT add a `-beta` suffix yourself. Label the PR with `publish-beta`. During the workflow the versions in `package.json` and `webtask.json` are rewritten (in the workspace of the build only) to:
+
+```
+<baseVersion>-beta.<RUN_NUMBER>
+```
+
+`<RUN_NUMBER>` is the monotonically increasing GitHub workflow run number, ensuring every beta publish produces a unique, non-overwritten artifact. Example: base `3.5.0` + run `451` → `3.5.0-beta.451`.
 
 ### 2. Open a PR
-Commit the version bump + any changes. When the PR merges to `master`, the workflow will build and publish automatically.
+Commit the stable version bump + changes. When the PR merges to `master`, a stable publish occurs.
 
-For a beta: work on any branch and ensure the version string itself includes `beta`.
+For a beta: open a PR from any internal branch, apply the `publish-beta` label. Each workflow run (new commit or relabel) generates a fresh `<base>-beta.<RUN_NUMBER>` version. Older beta versions remain in the CDN; only the major.minor alias (e.g. `3.5`) is overwritten.
 
-### 3. (Optional) Manual Run
-If you need to publish without merging yet, open the Actions tab, select the Build workflow, click "Run workflow", choose the branch, optionally include a note, and run it.
-
-### 4. Build Locally (if you want to verify before pushing)
+### 3. Build Locally (if you want to verify before pushing)
 ```bash
 nvm use 22
 yarn install
@@ -80,18 +83,19 @@ Artifacts produced:
 - Bundle file (`auth0-account-link.extension.VERSION.js`) is found in `/dist`
 - Asset CSS files are found in `/dist/assets`
 
-### 5. Publication Targets
+### 4. Publication Targets
 The workflow/script (`tools/cdn.sh`) uploads to S3:
 - Stable (no `beta` in version): `s3://assets.us.auth0.com/extensions/auth0-account-link/`
 - Beta (version contains `beta`): `s3://assets.us.auth0.com/extensions/develop/auth0-account-link/`
 
-We publish both an full version (eg: `1.2.3`), and a major.minor version (eg: `1.2`). The major.minor version will be overwritten on each publish, while the full version will NOT be overwritten. 
+We publish both a full version (eg: `1.2.3`), and a major.minor version (eg: `1.2`). The major.minor version will be overwritten on each publish, while the full version will NOT be overwritten. 
 
-### 6. Caching & Re-Publishing
-Increment the version to force a new publish.
+### 5. Caching & Re-Publishing
+Stable: increment the version (e.g. `3.5.1`) to publish a new immutable full version plus updated major.minor alias.
+Beta: every run already creates a unique `<base>-beta.<RUN_NUMBER>`; no manual increment needed unless you change the base version.
 
-### 7. Testing a Beta or Candidate
+### 6. Testing a Beta or Candidate
 Because beta assets are isolated under `extensions/develop`, production consumers will not pick them up automatically.
 
-### 8. Promoting to Stable
-Once validated, remove the `-beta.*` suffix, bump to the final version (e.g. `3.5.0`), merge to `master` (or manually trigger on the release commit), and a stable publish will occur.
+### 7. Promoting to Stable
+Remove the `publish-beta` label, ensure `package.json` & `webtask.json` have the desired final version without any beta suffix (e.g. `3.5.0`), merge to `master`. A stable publish with immutable full version + refreshed major.minor alias occurs.
