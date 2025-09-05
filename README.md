@@ -51,20 +51,47 @@ yarn test
 
 ## Release Process
 
-Deployment is currently done using this tool: https://auth0-extensions.us.webtask.io/extensions-deploy
+Deployment is now handled by the GitHub Actions workflow (`.github/workflows/build.yml`). It runs automatically on:
 
-First bump the version in `package.json` and in `webtask.json`
+1. Push/merge to `master` (stable releases)
+2. Manual trigger ("Run workflow" in the GitHub UI) against any branch (useful for beta / pre‑release testing)
 
-Then build the extension:
+### 1. Bump the Version
+Update the version in BOTH `package.json` and `webtask.json`.
 
+Use semantic versions. Append `-beta.N` for beta builds, e.g. `3.5.0-beta.1`.
+
+### 2. Open a PR
+Commit the version bump + any changes. When the PR merges to `master`, the workflow will build and publish automatically.
+
+For a beta: work on any branch and ensure the version string itself includes `beta`.
+
+### 3. (Optional) Manual Run
+If you need to publish without merging yet, open the Actions tab, select the Build workflow, click "Run workflow", choose the branch, optionally include a note, and run it.
+
+### 4. Build Locally (if you want to verify before pushing)
 ```bash
-nvm use 10
+nvm use 22
 yarn install
 yarn run build
 ```
 
-Bundle file (`auth0-account-link.extension.VERSION.js` is found in `/dist`
-Asset CSS files are found in `/dist/assets`
+Artifacts produced:
+- Bundle file (`auth0-account-link.extension.VERSION.js`) is found in `/dist`
+- Asset CSS files are found in `/dist/assets`
 
-Follow the instructions in the deployment tool.  This tool will also automatically generate a PR in the `auth0-extensions` repo.  Only after the PR is merged will the extension be available in production.  Before merging the PR you can use this tool to test the upgrade: https://github.com/auth0-extensions/auth0-extension-update-tester by overriding the `extensions.json` file that is fetched by the dashboard.  You will need to clone this repo: https://github.com/auth0/auth0-extensions, update `extensions.json` locally and then run `npx http-server --port 3000 --cors` to serve up the file.  Then configure the extension with `http://localhost:3000/extensions.json` as the path.
+### 5. Publication Targets
+The workflow/script (`tools/cdn.sh`) uploads to S3:
+- Stable (no `beta` in version): `s3://assets.us.auth0.com/extensions/auth0-account-link/`
+- Beta (version contains `beta`): `s3://assets.us.auth0.com/extensions/develop/auth0-account-link/`
 
+We publish both an full version (eg: `1.2.3`), and a major.minor version (eg: `1.2`). The major.minor version will be overwritten on each publish, while the full version will NOT be overwritten. 
+
+### 6. Caching & Re-Publishing
+Increment the version to force a new publish.
+
+### 7. Testing a Beta or Candidate
+Because beta assets are isolated under `extensions/develop`, production consumers will not pick them up automatically.
+
+### 8. Promoting to Stable
+Once validated, remove the `-beta.*` suffix, bump to the final version (e.g. `3.5.0`), merge to `master` (or manually trigger on the release commit), and a stable publish will occur.
