@@ -78,7 +78,7 @@
     "auth0": "4.9.0",
     "auth0-extension-tools": "^1.5.2",
     "hapi-auth-jwt2": "11.0.0",
-    "jsonwebtoken": "9.0.0",
+    "jsonwebtoken": "9.0.3",
     "jwks-rsa": "3.0.1",
     "lodash": "4.17.23",
     "nconf": "0.12.0",
@@ -109,6 +109,6 @@
     "sinon": "^19.0.2"
   },
   "resolutions": {
-    "jsonwebtoken": "9.0.0"
+    "jsonwebtoken": "9.0.3"
   }
 }
