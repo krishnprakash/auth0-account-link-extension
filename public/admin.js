@@ -263,13 +263,14 @@ module.exports = function() {
 
       for (var messageName in locale) {
         if (messageName !== '_name') {
-          $managementTable.append(
-            '<tr><td id="key">' +
-              messageName +
-              '</td><td><input class="form-control" value="' +
-              locale[messageName] +
-              '" /></td>'
-          );
+          var $row = $('<tr>');
+          var $keyCell = $('<td id="key">').text(messageName);
+          var $valueCell = $('<td>');
+          var $input = $('<input class="form-control" />').val(locale[messageName]);
+
+          $valueCell.append($input);
+          $row.append($keyCell).append($valueCell);
+          $managementTable.append($row);
         }
       }
     }
