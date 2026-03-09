@@ -42,7 +42,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
 
-      - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e
+      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f
         with:
           node-version: "22"
 
@@ -59,7 +59,7 @@ jobs:
 
       - name: Configure AWS Credentials (beta) using OIDC
         if: needs.pre-flight.outputs.should_publish_beta == 'true'
-        uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502 # v4 on 2025-01-06
+        uses: aws-actions/configure-aws-credentials@8df5847569e6427dd6c4fb1cf565c83acfa8afa7 # v4 on 2025-01-06
         with:
           role-to-assume: ${{ env.AWS_ROLE_BETA }}
           role-session-name: github-action-account-link-extension-publish-beta
@@ -67,7 +67,7 @@ jobs:
 
       - name: Configure AWS Credentials (prod) using OIDC
         if: needs.pre-flight.outputs.should_publish_prod == 'true'
-        uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502 # v4 on 2025-01-06
+        uses: aws-actions/configure-aws-credentials@8df5847569e6427dd6c4fb1cf565c83acfa8afa7 # v4 on 2025-01-06
         with:
           role-to-assume: ${{ env.AWS_ROLE }}
           role-session-name: github-action-account-link-extension-publish-prod
