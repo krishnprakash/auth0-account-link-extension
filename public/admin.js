@@ -245,9 +245,10 @@ module.exports = function() {
       $localeMenu.find('li').remove();
 
       for (var key in locales) {
-        $localeMenu.append(
-          `<li class="list-group-item" data-locale-name="${key}">${locales[key]._name}</li>`
-        );
+        var $item = $('<li class="list-group-item">');
+        $item.attr('data-locale-name', key);
+        $item.text(locales[key]._name);
+        $localeMenu.append($item);
       }
       listenForMenuClicks();
 
@@ -259,7 +260,7 @@ module.exports = function() {
       var locale = locales[selectedLocale];
       $('tr:not(tr.header)').remove();
 
-      $localeTitle.html(locale._name);
+      $localeTitle.text(locale._name);
 
       for (var messageName in locale) {
         if (messageName !== '_name') {
