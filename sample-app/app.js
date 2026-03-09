@@ -59,7 +59,11 @@ app.use(
   session({
     secret: 'shhhhhhhhh',
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: {
+      secure: app.get('env') === 'production',
+      httpOnly: true
+    }
   })
 );
 app.use(passport.initialize());
