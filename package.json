@@ -90,7 +90,7 @@
   },
   "devDependencies": {
     "auth0-extensions-cli": "^4.0.4",
-    "chai": "^4.1.0",
+    "chai": "^6.2.2",
     "eslint": "^4.3.0",
     "eslint-config-auth0": "^11.0.0",
     "eslint-config-auth0-base": "^13.0.0",
