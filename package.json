@@ -106,7 +106,7 @@
     "nodemon": "^1.11.0",
     "nyc": "^11.1.0",
     "puppeteer": "^24.2.0",
-    "sinon": "^19.0.2"
+    "sinon": "^21.0.2"
   },
   "resolutions": {
     "jsonwebtoken": "9.0.3"
