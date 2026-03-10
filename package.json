@@ -79,7 +79,7 @@
     "auth0-extension-tools": "^1.5.2",
     "hapi-auth-jwt2": "11.0.0",
     "jsonwebtoken": "9.0.3",
-    "jwks-rsa": "3.0.1",
+    "jwks-rsa": "4.0.1",
     "lodash": "4.17.23",
     "nconf": "0.12.0",
     "open": "^11.0.0",
