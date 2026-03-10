@@ -86,7 +86,7 @@
     "request": "2.88.2",
     "superagent": "8.0.9",
     "webtask-tools": "^3.4.1",
-    "winston": "3.10.0"
+    "winston": "3.19.0"
   },
   "devDependencies": {
     "auth0-extensions-cli": "^4.0.4",
