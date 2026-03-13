@@ -2489,14 +2489,23 @@ auth0-extensions-cli@^4.0.4:
     webpack-stats-plugin "^0.2.1"
     webtask-json-validator "~4.0.0"
 
-auth0@4.9.0:
-  version "4.9.0"
-  resolved "https://registry.yarnpkg.com/auth0/-/auth0-4.9.0.tgz#694f36a979bb470bd4de7365fa8f8b6696908a01"
-  integrity sha512-5Kwu3qob0unm7Nk1gpiUwWBFvkqzJjZRlRNLCHcAkdwsBa52YsE7RyN8KsNns8dv6uyTIT4hZnbMEnHd7PnXZQ==
+"auth0-legacy@npm:auth0@^4.27.0":
+  version "4.37.0"
+  resolved "https://registry.yarnpkg.com/auth0/-/auth0-4.37.0.tgz#828d91d254926579e0fff5b6c060988c5631436f"
+  integrity sha512-+TqJRxh4QvbD4TQIYx1ak2vanykQkG/nIZLuR6o8LoQj425gjVG3tFuUbbOeh/nCpP1rnvU0CCV1ChZHYXLU/A==
   dependencies:
     jose "^4.13.2"
     undici-types "^6.15.0"
     uuid "^9.0.0"
+
+auth0@5.5.0:
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/auth0/-/auth0-5.5.0.tgz#ff7894f561346fa86debe1bc34ecd69bcfc017d0"
+  integrity sha512-adHl/7SZ3MDlSulSFxbkFbDe+pJldm3ovrQ67IGt/DOobkDIfVaQThGbsZL+4YHF7BJv0TzmHdUl0lcTmHKcng==
+  dependencies:
+    auth0-legacy "npm:auth0@^4.27.0"
+    jose "^4.13.2"
+    uuid "^11.1.0"
 
 auth0@^2.23.0:
   version "2.44.1"
@@ -12857,6 +12866,11 @@ utils-merge@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
   integrity sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==
+
+uuid@^11.1.0:
+  version "11.1.0"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-11.1.0.tgz#9549028be1753bb934fc96e2bca09bb4105ae912"
+  integrity sha512-0/A9rDy9P7cJ+8w1c9WD9V//9Wj15Ce2MPz8Ri6032usz+NfePxx5AcN3bN+r6ZL6jEo066/yNYB3tn4pQEx+A==
 
 uuid@^3.1.0, uuid@^3.3.2:
   version "3.4.0"
