@@ -90,7 +90,7 @@
   },
   "devDependencies": {
     "auth0-extensions-cli": "^4.0.4",
-    "chai": "^4.1.0",
+    "chai": "^6.2.2",
     "eslint": "^4.3.0",
     "eslint-config-auth0": "^11.0.0",
     "eslint-config-auth0-base": "^13.0.0",
@@ -103,7 +103,7 @@
     "minifier": "^0.8.1",
     "mocha": "^11.7.5",
     "nock": "^14.0.3",
-    "nodemon": "^1.11.0",
+    "nodemon": "^3.1.14",
     "nyc": "^11.1.0",
     "puppeteer": "^24.2.0",
     "sinon": "^21.0.2"
