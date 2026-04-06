@@ -59,7 +59,7 @@ jobs:
 
       - name: Configure AWS Credentials (beta) using OIDC
         if: needs.pre-flight.outputs.should_publish_beta == 'true'
-        uses: aws-actions/configure-aws-credentials@8df5847569e6427dd6c4fb1cf565c83acfa8afa7 # v4 on 2025-01-06
+        uses: aws-actions/configure-aws-credentials@ec61189d14ec14c8efccab744f656cffd0e33f37 # v4 on 2025-01-06
         with:
           role-to-assume: ${{ env.AWS_ROLE_BETA }}
           role-session-name: github-action-account-link-extension-publish-beta
@@ -67,7 +67,7 @@ jobs:
 
       - name: Configure AWS Credentials (prod) using OIDC
         if: needs.pre-flight.outputs.should_publish_prod == 'true'
-        uses: aws-actions/configure-aws-credentials@8df5847569e6427dd6c4fb1cf565c83acfa8afa7 # v4 on 2025-01-06
+        uses: aws-actions/configure-aws-credentials@ec61189d14ec14c8efccab744f656cffd0e33f37 # v4 on 2025-01-06
         with:
           role-to-assume: ${{ env.AWS_ROLE }}
           role-session-name: github-action-account-link-extension-publish-prod
