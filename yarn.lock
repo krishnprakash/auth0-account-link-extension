@@ -2690,10 +2690,10 @@ auth0-extensions-cli@^4.0.4:
     undici-types "^6.15.0"
     uuid "^9.0.0"
 
-auth0@5.6.0:
-  version "5.6.0"
-  resolved "https://registry.yarnpkg.com/auth0/-/auth0-5.6.0.tgz#4e94a3c44e3faab0c9414f0164b6d62c383ceb2b"
-  integrity sha512-+1pEJlf9Q2j2eU1mMQ8wRIGJ15U9iDXrQTUWqeyY6BOpUtYCPOs9I9yuYcQHL7NyByTWPrLNoNEXbtMHi36LAw==
+auth0@5.7.0:
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/auth0/-/auth0-5.7.0.tgz#4456f3bc117810c042a49f8578a10551b977ffa9"
+  integrity sha512-1JpxxSHQ5No1/2dGWzPO3592uOlblflEkVI+IXC9TX6Iqe7qgtxOdpf5Er9v42pg0vE0WfLH26iC1Q48+uyXsg==
   dependencies:
     auth0-legacy "npm:auth0@^4.27.0"
     jose "^4.13.2"
