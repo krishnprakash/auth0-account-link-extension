@@ -2693,21 +2693,21 @@ auth0-extensions-cli@^4.0.4:
     webpack-stats-plugin "^0.2.1"
     webtask-json-validator "~4.0.0"
 
-"auth0-legacy@npm:auth0@^4.27.0":
-  version "4.37.0"
-  resolved "https://registry.yarnpkg.com/auth0/-/auth0-4.37.0.tgz#828d91d254926579e0fff5b6c060988c5631436f"
-  integrity sha512-+TqJRxh4QvbD4TQIYx1ak2vanykQkG/nIZLuR6o8LoQj425gjVG3tFuUbbOeh/nCpP1rnvU0CCV1ChZHYXLU/A==
+"auth0-legacy@npm:auth0@^4.37.1":
+  version "4.37.1"
+  resolved "https://registry.yarnpkg.com/auth0/-/auth0-4.37.1.tgz#988f737360f0bfe0699c22b3deda7f74424beb78"
+  integrity sha512-o9ca0P+hHSUbiwOSFW+DS2GmCA5c6T6E1UJZhWcgKmjAI2Aid16wLzY4/y+XNFb7Im1rM+wQc5YkkNZuTy5FOw==
   dependencies:
     jose "^4.13.2"
     undici-types "^6.15.0"
-    uuid "^9.0.0"
+    uuid "11.1.1"
 
-auth0@5.10.0:
-  version "5.10.0"
-  resolved "https://registry.yarnpkg.com/auth0/-/auth0-5.10.0.tgz#a929336dae3194c704c4b6ab4c903620738e57ed"
-  integrity sha512-vVLk1j/ZE7BzAIuswWpz8KERX5EPy4TLgdt6Oh3omyHMCtsOj9dmv3EsIczvglLTWCpqgTox+OdzZJQnKXxqCA==
+auth0@5.12.0:
+  version "5.12.0"
+  resolved "https://registry.yarnpkg.com/auth0/-/auth0-5.12.0.tgz#f7b4b8ded718fe3a4033872e75383725972c2a0d"
+  integrity sha512-cYILCJs1p8b3As5uqD5BhDWi7HL0tZrd8ISrO4RZfFJdz5zFPrt/GVEpK4HEZZ9YmBBZuImp/VFwDNaD8oDh4g==
   dependencies:
-    auth0-legacy "npm:auth0@^4.27.0"
+    auth0-legacy "npm:auth0@^4.37.1"
     jose "^4.13.2"
     uuid "^11.1.1"
 
@@ -12871,7 +12871,7 @@ utils-merge@1.0.1:
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
   integrity sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==
 
-uuid@^11.1.1:
+uuid@11.1.1, uuid@^11.1.1:
   version "11.1.1"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-11.1.1.tgz#f6d81d2e1c65d00762e5e29b16c5d2d995e208ad"
   integrity sha512-vIYxrBCC/N/K+Js3qSN88go7kIfNPssr/hHCesKCQNAjmgvYS2oqr69kIufEG+O4+PfezOH4EbIeHCfFov8ZgQ==
@@ -12885,11 +12885,6 @@ uuid@^8.3.2:
   version "8.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
-
-uuid@^9.0.0:
-  version "9.0.1"
-  resolved "https://registry.yarnpkg.com/uuid/-/uuid-9.0.1.tgz#e188d4c8853cc722220392c424cd637f32293f30"
-  integrity sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==
 
 v8-compile-cache@^1.1.0:
   version "1.1.2"
