@@ -7881,15 +7881,16 @@ jwks-rsa@1.2.0:
     ms "^2.0.0"
     request "^2.73.0"
 
-jwks-rsa@4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/jwks-rsa/-/jwks-rsa-4.0.1.tgz#bf40d05869adbcd4764843d567547aeff71ad0c8"
-  integrity sha512-poXwUA8S4cP9P5N8tZS3xnUDJH8WmwSGfKK9gIaRPdjLHyJtd9iX/cngX9CUIe0Caof5JhK2EbN7N5lnnaf9NA==
+jwks-rsa@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/jwks-rsa/-/jwks-rsa-4.1.0.tgz#aaa2b33c2074c13ea7cc3edc64cc77881d85b686"
+  integrity sha512-sbkByqyATKYJP5F4RXj03N5TUNC0QLTjCAZvwTzC4BwJZ8e0/cWxN8YROnyUth2g1/ONWi4eSFHeu6oYalrc3Q==
   dependencies:
     "@types/jsonwebtoken" "^9.0.4"
     debug "^4.3.4"
     jose "^6.1.3"
     limiter "^1.1.5"
+    lru-cache "^11.0.0"
     lru-memoizer "^3.0.0"
 
 jwks-rsa@^1.12.1:
